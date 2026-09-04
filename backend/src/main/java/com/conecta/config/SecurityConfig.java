@@ -55,6 +55,7 @@ public class SecurityConfig {
 				.authorizeHttpRequests(auth -> auth
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 						.requestMatchers("/api/auth/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/api/health").permitAll()
 						.requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
 						.requestMatchers("/ws/**").permitAll()
 						.requestMatchers("/error").permitAll()
@@ -90,7 +91,7 @@ public class SecurityConfig {
 				.filter(s -> !s.isBlank())
 				.toList();
 
-		configuration.setAllowedOrigins(origins);
+		configuration.setAllowedOriginPatterns(origins);
 		configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 		configuration.setAllowedHeaders(List.of("*"));
 		configuration.setAllowCredentials(true);

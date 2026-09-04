@@ -1,6 +1,7 @@
 package com.conecta.config;
 
 import com.conecta.security.JwtService;
+import java.util.Arrays;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,9 +35,12 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		String[] origins = allowedOrigins.split(",");
+		String[] origins = Arrays.stream(allowedOrigins.split(","))
+				.map(String::trim)
+				.filter(s -> !s.isBlank())
+				.toArray(String[]::new);
 		registry.addEndpoint("/ws")
-				.setAllowedOrigins(origins)
+				.setAllowedOriginPatterns(origins)
 				.withSockJS();
 	}
 

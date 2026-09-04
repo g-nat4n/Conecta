@@ -1,0 +1,8 @@
+TARGET *.jar
+!target/
+!**/src/main/**
+!**/src/test/**
+.git
+.idea
+uploads
+*.md
