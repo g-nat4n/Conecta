@@ -38,3 +38,6 @@ npm-debug.log*
 # Uploads locais
 backend/uploads/
 uploads/
+
+.vercel/
+frontend/.vercel/
