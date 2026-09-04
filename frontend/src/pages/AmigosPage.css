@@ -1,0 +1,118 @@
+.amigos-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.amigos-panel {
+  padding: 1.35rem;
+}
+
+.amigos-panel h1 {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.amigos-search {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: end;
+  margin-bottom: 1.25rem;
+}
+
+.amigos-block {
+  margin-top: 1.25rem;
+}
+
+.amigos-block h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+  color: #e8eefc;
+}
+
+.amigos-block ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.amigos-block li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.amigos-user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.amigos-user strong,
+.amigos-user small {
+  display: block;
+}
+
+.amigos-user small {
+  color: #9db0c9;
+  font-size: 0.8rem;
+}
+
+.amigos-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.amigos-empty {
+  color: #9db0c9;
+  margin: 0;
+}
+
+.amigos-status {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c5d3ef;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.amigos-status.enviada {
+  color: #dce9ff;
+  background: rgba(27, 110, 243, 0.18);
+  border-color: rgba(27, 110, 243, 0.35);
+}
+
+.amigos-alert {
+  margin-bottom: 0.85rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  background: rgba(255, 90, 110, 0.14);
+  color: #ffd0d7;
+}
+
+@media (max-width: 700px) {
+  .amigos-search {
+    grid-template-columns: 1fr;
+  }
+
+  .amigos-block li {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

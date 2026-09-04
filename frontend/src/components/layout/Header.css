@@ -1,0 +1,144 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  padding: 0.85rem 1.25rem;
+  backdrop-filter: blur(18px);
+  background: rgba(6, 10, 20, 0.55);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.app-header__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.app-header__brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.app-header__logo {
+  height: 44px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.app-header__search {
+  display: flex;
+  justify-content: center;
+}
+
+.app-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: #d7e4ff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.profile-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0.75rem 0.3rem 0.3rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #edf3ff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-chip__avatar,
+.profile-chip__fallback {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-chip__fallback {
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #1b6ef3;
+  color: #fff;
+}
+
+.profile-chip__name {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  color: #d7e4ff;
+  border-radius: 12px;
+  padding: 0.65rem 0.95rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 90, 110, 0.18);
+  color: #ffd4da;
+}
+
+@media (max-width: 900px) {
+  .app-header__inner {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'brand actions'
+      'search search';
+  }
+
+  .app-header__brand {
+    grid-area: brand;
+  }
+
+  .app-header__search {
+    grid-area: search;
+  }
+
+  .app-header__actions {
+    grid-area: actions;
+  }
+
+  .profile-chip__name {
+    display: none;
+  }
+}

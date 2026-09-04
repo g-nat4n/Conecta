@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Build
+target/
+frontend/dist/
+*.class
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+frontend/.env
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.iws
+*.ipr
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Maven wrapper jar (keep properties)
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# Video is large; keep in repo for now or ignore if needed
+# frontend/src/assets/fundo.mp4
+
+# Uploads locais
+backend/uploads/
+uploads/

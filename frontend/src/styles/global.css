@@ -1,0 +1,63 @@
+:root {
+  --bg-deep: #07111f;
+  --text-primary: #f4f8ff;
+  --text-muted: #9db0c9;
+  --accent: #1b6ef3;
+  --accent-hover: #1557c7;
+  --accent-soft: rgba(27, 110, 243, 0.16);
+  --accent-border: rgba(27, 110, 243, 0.35);
+  --glass-bg: rgba(10, 18, 32, 0.62);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --radius-lg: 20px;
+  --shadow-soft: 0 18px 48px rgba(0, 0, 0, 0.35);
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--text-primary);
+  background-color: var(--bg-deep);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}

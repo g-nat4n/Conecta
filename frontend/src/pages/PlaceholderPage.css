@@ -1,0 +1,26 @@
+.placeholder-page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.placeholder-card {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.placeholder-card h1 {
+  margin: 0 0 0.6rem;
+  color: #f2f6ff;
+}
+
+.placeholder-card p {
+  margin: 0 0 1.2rem;
+  color: #9fb4d9;
+}
+
+.placeholder-card a {
+  color: #8fd4ff;
+  font-weight: 600;
+  text-decoration: none;
+}

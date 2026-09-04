@@ -1,0 +1,113 @@
+.perfil-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.perfil-card {
+  overflow: hidden;
+  padding: 0;
+}
+
+.perfil-card__banner {
+  height: 140px;
+  background:
+    linear-gradient(135deg, rgba(27, 110, 243, 0.75), rgba(21, 87, 199, 0.55));
+}
+
+.perfil-card__content {
+  padding: 0 1.5rem 1.75rem;
+  margin-top: -48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.perfil-card__avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.perfil-card__avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(8, 12, 24, 0.9);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+}
+
+.perfil-card__avatar--fallback {
+  display: grid;
+  place-items: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #fff;
+  background: #1b6ef3;
+}
+
+.perfil-card__photo-btn {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: #d7e4ff;
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.perfil-card h1 {
+  margin: 1rem 0 0.25rem;
+  font-size: 1.7rem;
+  color: #f2f6ff;
+}
+
+.perfil-card__email {
+  margin: 0;
+  color: #9fb4d9;
+}
+
+.perfil-card__meta {
+  margin: 0.45rem 0 0;
+  color: #7f94b8;
+  font-size: 0.86rem;
+}
+
+.perfil-card__actions {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  justify-content: center;
+}
+
+.perfil-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.perfil-alert {
+  width: 100%;
+  margin-top: 0.9rem;
+  border-radius: 12px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.86rem;
+}
+
+.perfil-alert.success {
+  background: rgba(70, 200, 140, 0.14);
+  border: 1px solid rgba(70, 200, 140, 0.3);
+  color: #b9f5d4;
+}
+
+.perfil-alert.error {
+  background: rgba(255, 90, 110, 0.14);
+  border: 1px solid rgba(255, 120, 140, 0.3);
+  color: #ffd0d7;
+}
