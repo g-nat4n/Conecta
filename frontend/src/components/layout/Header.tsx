@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/logo-branca.png'
 import { useAuth } from '../../contexts/AuthContext'
-import { mediaUrl } from '../../utils/media'
+import { UserAvatar } from '../ui/UserAvatar'
 import { NotificationDropdown } from './NotificationDropdown'
 import { SearchBar } from './SearchBar'
 import './Header.css'
@@ -11,19 +11,11 @@ export function Header() {
   const { usuario, logout } = useAuth()
   const navigate = useNavigate()
   const [busca, setBusca] = useState('')
-  const foto = mediaUrl(usuario?.foto)
 
   function handleLogout() {
     logout()
     navigate('/login', { replace: true })
   }
-
-  const iniciais = usuario?.nome
-    ?.split(' ')
-    .slice(0, 2)
-    .map((p) => p[0])
-    .join('')
-    .toUpperCase()
 
   return (
     <header className="app-header">
@@ -58,11 +50,12 @@ export function Header() {
           </Link>
 
           <Link to="/perfil" className="profile-chip" title="Meu perfil">
-            {foto ? (
-              <img src={foto} alt="" className="profile-chip__avatar" />
-            ) : (
-              <span className="profile-chip__fallback">{iniciais || 'C'}</span>
-            )}
+            <UserAvatar
+              nome={usuario?.nome}
+              foto={usuario?.foto}
+              size={32}
+              className="profile-chip__avatar"
+            />
             <span className="profile-chip__name">{usuario?.nome?.split(' ')[0]}</span>
           </Link>
 

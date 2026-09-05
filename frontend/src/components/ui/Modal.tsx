@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import './Modal.css'
 
 interface ModalProps {
@@ -9,9 +10,9 @@ interface ModalProps {
 }
 
 export function Modal({ open, title, onClose, children }: ModalProps) {
-  if (!open) return null
+  if (!open || typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <div className="modal-backdrop" role="presentation" onClick={onClose}>
       <div
         className="modal-panel glass-panel"
@@ -28,6 +29,7 @@ export function Modal({ open, title, onClose, children }: ModalProps) {
         </header>
         <div className="modal-body">{children}</div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

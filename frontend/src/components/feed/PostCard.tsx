@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useAuth } from '../../contexts/AuthContext'
+import { useToast } from '../../contexts/ToastContext'
 import {
   alternarCurtida,
   atualizarComentario,
@@ -9,10 +10,13 @@ import {
   excluirPost,
   listarComentarios,
 } from '../../services/postService'
+import type { TipoDenuncia } from '../../services/denunciaService'
 import type { Comentario, Post } from '../../types/post'
 import { getErrorMessage } from '../../utils/error'
 import { formatRelative, mediaUrl } from '../../utils/media'
 import { Button } from '../ui/Button'
+import { UserAvatar } from '../ui/UserAvatar'
+import { DenunciarModal } from './DenunciarModal'
 import './PostCard.css'
 
 interface PostCardProps {
@@ -22,6 +26,7 @@ interface PostCardProps {
 
 export function PostCard({ post, onChanged }: PostCardProps) {
   const { usuario } = useAuth()
+  const { pushToast } = useToast()
   const [curtido, setCurtido] = useState(post.curtidoPorMim)
   const [totalCurtidas, setTotalCurtidas] = useState(post.totalCurtidas)
   const [mostrarComentarios, setMostrarComentarios] = useState(false)
@@ -31,10 +36,10 @@ export function PostCard({ post, onChanged }: PostCardProps) {
   const [conteudoEdit, setConteudoEdit] = useState(post.conteudo)
   const [erro, setErro] = useState('')
   const [loading, setLoading] = useState(false)
+  const [denuncia, setDenuncia] = useState<{ tipo: TipoDenuncia; referenciaId: number } | null>(null)
 
   const autorNome = post.autor?.nome?.trim() || 'Usuário'
   const isDono = usuario?.id === post.autor?.id
-  const fotoAutor = mediaUrl(post.autor?.foto)
   const imagemPost = mediaUrl(post.imagem)
 
   useEffect(() => {
@@ -133,13 +138,7 @@ export function PostCard({ post, onChanged }: PostCardProps) {
   return (
     <article className="post-card glass-panel">
       <header className="post-card__header">
-        {fotoAutor ? (
-          <img src={fotoAutor} alt="" className="post-card__avatar" />
-        ) : (
-          <div className="post-card__avatar post-card__avatar--fallback" aria-hidden>
-            {autorNome.charAt(0).toUpperCase()}
-          </div>
-        )}
+        <UserAvatar nome={autorNome} foto={post.autor?.foto} size={42} className="post-card__avatar" />
         <div className="post-card__meta">
           <h3>{autorNome}</h3>
           <time>{formatRelative(post.dataCriacao)}</time>
@@ -153,7 +152,17 @@ export function PostCard({ post, onChanged }: PostCardProps) {
               Excluir
             </button>
           </div>
-        ) : null}
+        ) : (
+          <div className="post-card__owner">
+            <button
+              type="button"
+              className="post-card__denunciar"
+              onClick={() => setDenuncia({ tipo: 'POST', referenciaId: post.id })}
+            >
+              Denunciar
+            </button>
+          </div>
+        )}
       </header>
 
       {editando ? (
@@ -181,9 +190,19 @@ export function PostCard({ post, onChanged }: PostCardProps) {
         <button type="button" onClick={() => void toggleComentarios()}>
           Comentar
         </button>
-        <button type="button" disabled title="Em breve">
-          Compartilhar
-        </button>
+        {!isDono ? (
+          <button
+            type="button"
+            className="post-card__denunciar-footer"
+            onClick={() => setDenuncia({ tipo: 'POST', referenciaId: post.id })}
+          >
+            Denunciar
+          </button>
+        ) : (
+          <button type="button" disabled title="Em breve">
+            Compartilhar
+          </button>
+        )}
       </footer>
 
       {mostrarComentarios ? (
@@ -214,7 +233,18 @@ export function PostCard({ post, onChanged }: PostCardProps) {
                       Excluir
                     </button>
                   </div>
-                ) : null}
+                ) : (
+                  <div className="post-card__comment-actions">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setDenuncia({ tipo: 'COMENTARIO', referenciaId: comentario.id })
+                      }
+                    >
+                      Denunciar
+                    </button>
+                  </div>
+                )}
               </li>
             ))}
           </ul>
@@ -222,6 +252,19 @@ export function PostCard({ post, onChanged }: PostCardProps) {
       ) : null}
 
       {erro ? <p className="post-card__error">{erro}</p> : null}
+
+      <DenunciarModal
+        open={denuncia != null}
+        tipo={denuncia?.tipo ?? 'POST'}
+        referenciaId={denuncia?.referenciaId ?? 0}
+        onClose={() => setDenuncia(null)}
+        onSuccess={() =>
+          pushToast({
+            mensagem: 'Denúncia enviada. Obrigado por ajudar a manter o Conecta seguro.',
+            tipo: 'DENUNCIA',
+          })
+        }
+      />
     </article>
   )
 }

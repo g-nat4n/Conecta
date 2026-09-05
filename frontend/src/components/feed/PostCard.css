@@ -59,6 +59,12 @@
   font-family: inherit;
 }
 
+.post-card__denunciar,
+.post-card__footer button.post-card__denunciar-footer {
+  color: #ff9eab !important;
+  background: rgba(255, 110, 130, 0.12) !important;
+}
+
 .post-card__content {
   margin: 0;
   color: #d5e0f5;

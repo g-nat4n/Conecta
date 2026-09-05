@@ -12,6 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -67,6 +68,11 @@ public class GlobalExceptionHandler {
 			AcessoNegadoException ex,
 			HttpServletRequest request) {
 		return build(HttpStatus.FORBIDDEN, "Forbidden", ex.getMessage(), request.getRequestURI());
+	}
+
+	@ExceptionHandler(NoResourceFoundException.class)
+	public ResponseEntity<Void> handleNoResource(NoResourceFoundException ex) {
+		return ResponseEntity.notFound().build();
 	}
 
 	@ExceptionHandler({BadCredentialsException.class, AuthenticationException.class})
